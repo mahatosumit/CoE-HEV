@@ -1,73 +1,135 @@
-# Welcome to your Lovable project
+# ⚡ Center of Excellence for Hybrid & Electric Vehicles (CoE-HEV)
 
-## Project info
+### 🌐 Official Website
 
-**URL**: https://lovable.dev/projects/6a73a097-3484-431a-893b-0a527da69822
+## 📘 About the Project
 
-## How can I edit this code?
+The **Center of Excellence for Hybrid and Electric Vehicles (CoE-HEV)** website is a modern, responsive, and dynamic web platform designed to showcase the facilities, training programs, events, and achievements of the center.
 
-There are several ways of editing your application.
+CoE-HEV provides **hands-on training, laboratory sessions, and industry-aligned skill development** in Hybrid Electric Vehicles (HEV), Electric Vehicles (EV), powertrain systems, energy storage, charging infrastructure, and emerging automotive technologies.
 
-**Use Lovable**
+This project transforms the original static website into a fully functional **React-based frontend** with an optional backend for database-driven operations such as registrations, events management, and gallery updates.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/6a73a097-3484-431a-893b-0a527da69822) and start prompting.
+The website aims to:
 
-Changes made via Lovable will be committed automatically to this repo.
+* Present the **labs, equipment, and infrastructure** available at the center
+* Highlight **courses, workshops, skill development programs, and certifications**
+* Display **events, achievements, and success stories**
+* Provide an interface for **student registration and contact queries**
+* Serve as a dynamic and scalable platform for academic and industry collaboration
 
-**Use your preferred IDE**
+---
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🚀 Key Features
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### 🌐 **Frontend (User Website)**
 
-Follow these steps:
+Built using **React + Vite**, the website includes:
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+#### ✔ Homepage
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+* Overview of the Center of Excellence
+* Mission & vision highlights
+* Quick links to courses and labs
+* Key achievements and updates
 
-# Step 3: Install the necessary dependencies.
-npm i
+#### ✔ Courses & Training Programs
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+* List of HEV/EV-related courses
+* Description, duration, and outcomes
+* Career and industry relevance
 
-**Edit a file directly in GitHub**
+#### ✔ Laboratories
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Courses and lab sections describe hands-on equipment such as:
 
-**Use GitHub Codespaces**
+* **HEV & EV Powertrain Bench**
+* **Battery Management System (BMS) Trainer**
+* **Electric Motor Test Bench**
+* **DC Fast Charger Simulation Setup**
+* **CAN, LIN, and automotive communication labs**
+* **Telemetry, IoT & ADAS demonstration rigs**
+  *(Based on the content inside the uploaded HTML pages)*
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+#### ✔ Events Section
 
-## What technologies are used for this project?
+* Event listing with images, dates, and descriptions
+* Calendar-based event filtering
+* Workshop & seminar announcements
 
-This project is built with:
+#### ✔ Gallery
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+* Interactive photo gallery
+* Image lightbox preview
+* Lab equipment photos, workshops, industrial visits
 
-## How can I deploy this project?
+#### ✔ Registration Form
 
-Simply open [Lovable](https://lovable.dev/projects/6a73a097-3484-431a-893b-0a527da69822) and click on Share -> Publish.
+* Student registration for HEV/EV training programs
+* Connects to backend API or Google Apps Script
 
-## Can I connect a custom domain to my Lovable project?
+#### ✔ Contact Page
 
-Yes, you can!
+* Inquiry form
+* Location & contact information
+* Social media integration
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+---
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+
+### 🔐 Authentication
+
+* Admin login
+* Role-based access (Admin, Editor)
+
+### 📝 Content Management
+
+Admins can Add / Edit / Delete:
+
+* Events
+* Gallery items
+* Courses
+* Lab details
+* Registrations
+
+### 📨 Form Handling
+
+* Store registration submissions in DB
+* Manage contact messages
+* Export data for reports
+
+### 🖼 File Storage
+
+* Upload images for gallery and events
+* Integrate S3 / Firebase / Supabase storage
+
+
+## 🎯 Target Audience
+
+The platform serves:
+
+* Students pursuing EV/HEV, Mechatronics, Auto, EEE
+* Faculty conducting skill development programs
+* Industry partners
+* Researchers working on EV systems
+* Academic institutions collaborating with CoE-HEV
+
+---
+
+## 🛡️ Why This Matters
+
+Electric mobility is the future. Centers of Excellence like CoE-HEV ensure students and professionals gain hands-on knowledge of:
+
+* Hybrid & Electric Vehicle architectures
+* Battery technologies
+* EV charging systems
+* Power electronics
+* Automotive communication protocols
+* Embedded & IoT systems
+* ADAS and intelligent mobility
+
+This platform supports the vision by providing a **digital window into the laboratory**, enabling smooth registrations, event announcements, and displaying the center’s capabilities effectively.
+
+---
+
+
