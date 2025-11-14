@@ -57,6 +57,23 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        blue: {
+          950: "hsl(var(--blue-950))",
+          900: "hsl(var(--blue-900))",
+          800: "hsl(var(--blue-800))",
+          700: "hsl(var(--blue-700))",
+          650: "hsl(var(--blue-650))",
+          600: "hsl(var(--blue-600))",
+          500: "hsl(var(--blue-500))",
+          400: "hsl(var(--blue-400))",
+        },
+        saffron: "hsl(var(--saffron))",
+        green: "hsl(var(--green))",
+        chip: "hsl(var(--chip))",
+        success: {
+          DEFAULT: "hsl(var(--success))",
+          foreground: "hsl(var(--success-foreground))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
