@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useRevealOnScroll } from '@/hooks/useRevealOnScroll';
 import { MapPin, Phone, Mail, Send, Clock } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 const Contact = () => {
   useRevealOnScroll();
@@ -39,8 +40,13 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      const { error } = await supabase.from('contact_messages').insert({
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+      });
+
+      if (error) throw error;
       
       toast({
         title: "Message Sent!",

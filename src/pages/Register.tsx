@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useRevealOnScroll } from '@/hooks/useRevealOnScroll';
 import { UserPlus } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 const Register = () => {
   useRevealOnScroll();
@@ -42,8 +43,18 @@ const Register = () => {
     setIsSubmitting(true);
 
     try {
-      // Simulate form submission
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      const { error } = await supabase.from('registrations').insert({
+        full_name: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        institution: formData.institution || null,
+        course: formData.course,
+        qualification: formData.qualification || null,
+        experience: formData.experience || null,
+        message: formData.message || null,
+      });
+
+      if (error) throw error;
 
       toast({
         title: "Registration Successful!",
