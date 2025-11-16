@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Plus, Edit, Trash2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { FileUpload } from './FileUpload';
 
 const AdminCourses = () => {
   const [courses, setCourses] = useState<any[]>([]);
