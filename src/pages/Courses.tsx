@@ -1,60 +1,42 @@
+import { useState, useEffect } from 'react';
+import { supabase } from '@/integrations/supabase/client';
 import { useRevealOnScroll } from '@/hooks/useRevealOnScroll';
-import { Clock, Users, Award, BookOpen } from 'lucide-react';
+import { BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Courses = () => {
   useRevealOnScroll();
+  const [courses, setCourses] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const courses = [
-    {
-      title: 'EV Fundamentals',
-      duration: '4 weeks',
-      level: 'Beginner',
-      students: '120+',
-      description: 'Introduction to electric vehicle technology, components, and basic principles.',
-      topics: ['EV Architecture', 'Battery Technology', 'Electric Motors', 'Charging Systems'],
-    },
-    {
-      title: 'Hybrid Vehicle Technology',
-      duration: '6 weeks',
-      level: 'Intermediate',
-      students: '85+',
-      description: 'Comprehensive study of hybrid powertrains and energy management systems.',
-      topics: ['HEV Types', 'Power Electronics', 'Control Strategies', 'Fuel Efficiency'],
-    },
-    {
-      title: 'Battery Management Systems',
-      duration: '8 weeks',
-      level: 'Advanced',
-      students: '65+',
-      description: 'In-depth analysis of BMS design, testing, and optimization techniques.',
-      topics: ['Cell Balancing', 'SOC Estimation', 'Thermal Management', 'Safety Protocols'],
-    },
-    {
-      title: 'EV Motor Control',
-      duration: '6 weeks',
-      level: 'Advanced',
-      students: '70+',
-      description: 'Advanced motor control techniques for electric vehicle applications.',
-      topics: ['BLDC Motors', 'FOC Control', 'Inverter Design', 'Performance Tuning'],
-    },
-    {
-      title: 'Charging Infrastructure',
-      duration: '4 weeks',
-      level: 'Intermediate',
-      students: '90+',
-      description: 'Design and implementation of EV charging stations and networks.',
-      topics: ['AC/DC Charging', 'Fast Charging', 'Grid Integration', 'Standards'],
-    },
-    {
-      title: 'EV System Integration',
-      duration: '10 weeks',
-      level: 'Advanced',
-      students: '50+',
-      description: 'Complete vehicle integration project with real-world applications.',
-      topics: ['System Design', 'Testing', 'Optimization', 'Project Management'],
-    },
-  ];
+  useEffect(() => {
+    loadCourses();
+  }, []);
+
+  const loadCourses = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('courses')
+        .select('*')
+        .eq('published', true)
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+      setCourses(data || []);
+    } catch (error) {
+      console.error('Error loading courses:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
 
   return (
     <div>

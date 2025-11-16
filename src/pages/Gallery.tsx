@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { supabase } from '@/integrations/supabase/client';
 import { useRevealOnScroll } from '@/hooks/useRevealOnScroll';
 import { Search, X, Download, Maximize, ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -10,69 +11,48 @@ const Gallery = () => {
   const [sortBy, setSortBy] = useState('newest');
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [isLightboxPlaying, setIsLightboxPlaying] = useState(false);
+  const [images, setImages] = useState<any[]>([]);
+  const [categories, setCategories] = useState<string[]>(['All']);
+  const [loading, setLoading] = useState(true);
 
-  const categories = ['All', 'Labs', 'Workshops', 'Events', 'Projects', 'Facilities'];
+  useEffect(() => {
+    loadGalleryItems();
+  }, []);
 
-  const images = [
-    {
-      src: 'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=800',
-      title: 'EV Laboratory Equipment',
-      category: 'Labs',
-      date: '2024-12-15',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800',
-      title: 'Battery Management Workshop',
-      category: 'Workshops',
-      date: '2024-12-10',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?w=800',
-      title: 'EV Charging Station Demo',
-      category: 'Facilities',
-      date: '2024-12-05',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1593941707874-ef25b8b4a92b?w=800',
-      title: 'Student Project Showcase',
-      category: 'Projects',
-      date: '2024-11-28',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1558818498-28c1e002b655?w=800',
-      title: 'Industry Expert Seminar',
-      category: 'Events',
-      date: '2024-11-20',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1622971546084-3ea621f88a2a?w=800',
-      title: 'Advanced Motor Lab',
-      category: 'Labs',
-      date: '2024-11-15',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1611361683239-d8e0e59a7424?w=800',
-      title: 'Hybrid Vehicle Testing',
-      category: 'Projects',
-      date: '2024-11-10',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1611117775350-ac3950990985?w=800',
-      title: 'EV Technology Workshop',
-      category: 'Workshops',
-      date: '2024-11-05',
-    },
-  ];
+  const loadGalleryItems = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('gallery_items')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+      
+      setImages(data || []);
+      
+      // Extract unique categories from tags
+      const allTags = new Set<string>();
+      data?.forEach(item => {
+        item.tags?.forEach((tag: string) => allTags.add(tag));
+      });
+      setCategories(['All', ...Array.from(allTags)]);
+    } catch (error) {
+      console.error('Error loading gallery:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const filteredImages = images
     .filter((img) => {
-      const matchesCategory = selectedCategory === 'All' || img.category === selectedCategory;
-      const matchesSearch = img.title.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesCategory = selectedCategory === 'All' || img.tags?.includes(selectedCategory);
+      const matchesSearch = img.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                           img.description?.toLowerCase().includes(searchTerm.toLowerCase());
       return matchesCategory && matchesSearch;
     })
     .sort((a, b) => {
-      if (sortBy === 'newest') return new Date(b.date).getTime() - new Date(a.date).getTime();
-      if (sortBy === 'oldest') return new Date(a.date).getTime() - new Date(b.date).getTime();
+      if (sortBy === 'newest') return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+      if (sortBy === 'oldest') return new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
       if (sortBy === 'title') return a.title.localeCompare(b.title);
       return 0;
     });

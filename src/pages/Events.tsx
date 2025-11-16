@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { supabase } from '@/integrations/supabase/client';
 import { useRevealOnScroll } from '@/hooks/useRevealOnScroll';
 import { Calendar, ChevronLeft, ChevronRight, MapPin, Clock } from 'lucide-react';
 
@@ -7,41 +8,29 @@ const Events = () => {
   
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
+  const [events, setEvents] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const events = [
-    {
-      date: '2025-01-15',
-      title: 'EV Technology Workshop',
-      time: '10:00 AM - 4:00 PM',
-      location: 'Main Laboratory',
-      type: 'Workshop',
-      description: 'Hands-on workshop on electric vehicle components and diagnostics.',
-    },
-    {
-      date: '2025-01-22',
-      title: 'Industry Expert Lecture',
-      time: '2:00 PM - 4:00 PM',
-      location: 'Auditorium',
-      type: 'Lecture',
-      description: 'Guest lecture by leading EV industry professional on future trends.',
-    },
-    {
-      date: '2025-02-05',
-      title: 'Battery Technology Seminar',
-      time: '11:00 AM - 1:00 PM',
-      location: 'Conference Hall',
-      type: 'Seminar',
-      description: 'Deep dive into latest battery management system technologies.',
-    },
-    {
-      date: '2025-02-18',
-      title: 'EV Design Competition',
-      time: '9:00 AM - 5:00 PM',
-      location: 'Innovation Center',
-      type: 'Competition',
-      description: 'Student competition for innovative EV design concepts.',
-    },
-  ];
+  useEffect(() => {
+    loadEvents();
+  }, []);
+
+  const loadEvents = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('events')
+        .select('*')
+        .eq('published', true)
+        .order('start_date', { ascending: true});
+
+      if (error) throw error;
+      setEvents(data || []);
+    } catch (error) {
+      console.error('Error loading events:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const getDaysInMonth = (date: Date) => {
     const year = date.getFullYear();
@@ -70,15 +59,23 @@ const Events = () => {
 
   const hasEvent = (day: number) => {
     const dateStr = formatDate(day);
-    return events.some(event => event.date === dateStr);
+    return events.some(event => event.start_date.startsWith(dateStr));
   };
 
   const filteredEvents = selectedDate
-    ? events.filter(event => event.date === selectedDate)
+    ? events.filter(event => event.start_date.startsWith(selectedDate))
     : events;
 
   const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'];
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
 
   return (
     <div>
