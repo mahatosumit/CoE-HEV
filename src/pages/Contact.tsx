@@ -47,6 +47,22 @@ const Contact = () => {
       });
 
       if (error) throw error;
+
+      // Send notification email
+      try {
+        await supabase.functions.invoke('send-notification', {
+          body: {
+            type: 'contact',
+            data: {
+              name: formData.name,
+              email: formData.email,
+              message: formData.message,
+            },
+          },
+        });
+      } catch (emailError) {
+        console.error('Error sending notification:', emailError);
+      }
       
       toast({
         title: "Message Sent!",
