@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { supabase } from '@/integrations/supabase/client';
+import { supabase } from '@/integrations/supabase/manualClient';
 import { useRevealOnScroll } from '@/hooks/useRevealOnScroll';
 import { Calendar, ChevronLeft, ChevronRight, MapPin, Clock } from 'lucide-react';
 

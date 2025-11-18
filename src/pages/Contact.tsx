@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useRevealOnScroll } from '@/hooks/useRevealOnScroll';
 import { MapPin, Phone, Mail, Send, Clock } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { supabase } from '@/integrations/supabase/client';
+import { supabase } from '@/integrations/supabase/manualClient';
 
 const Contact = () => {
   useRevealOnScroll();

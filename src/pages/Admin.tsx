@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { supabase } from '@/integrations/supabase/client';
+import { supabase } from '@/integrations/supabase/manualClient';
 import { useNavigate, Routes, Route, Link } from 'react-router-dom';
 import { LogOut, LayoutDashboard, Calendar, Image, BookOpen, Users, MessageSquare } from 'lucide-react';
 import AdminDashboard from '@/components/admin/AdminDashboard';
