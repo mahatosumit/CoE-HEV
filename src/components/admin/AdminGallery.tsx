@@ -134,23 +134,45 @@ const AdminGallery = () => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-2">Image URL *</label>
+            <label className="block text-sm font-medium mb-2">Image *</label>
+            <div className="flex gap-2 items-start mb-2">
+              <FileUpload
+                onUploadComplete={(url) => setFormData({ ...formData, image_url: url, thumbnail_url: url })}
+                accept="image/*"
+              />
+              {formData.image_url && (
+                <img
+                  src={formData.image_url}
+                  alt="Preview"
+                  className="w-20 h-20 object-cover rounded-lg"
+                />
+              )}
+            </div>
             <input
               type="url"
               required
               value={formData.image_url}
               onChange={(e) => setFormData({ ...formData, image_url: e.target.value })}
               className="w-full px-4 py-2 bg-background rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary"
+              placeholder="Or paste image URL"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-2">Thumbnail URL (optional)</label>
+            <label className="block text-sm font-medium mb-2">Thumbnail (optional)</label>
+            <p className="text-xs text-muted-foreground mb-2">Leave empty to use main image</p>
+            {formData.thumbnail_url && formData.thumbnail_url !== formData.image_url && (
+              <img
+                src={formData.thumbnail_url}
+                alt="Thumbnail preview"
+                className="w-20 h-20 object-cover rounded-lg mb-2"
+              />
+            )}
             <input
               type="url"
               value={formData.thumbnail_url}
               onChange={(e) => setFormData({ ...formData, thumbnail_url: e.target.value })}
               className="w-full px-4 py-2 bg-background rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary"
-              placeholder="Leave empty to use main image"
+              placeholder="Optional separate thumbnail URL"
             />
           </div>
           <div>

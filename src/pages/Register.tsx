@@ -56,6 +56,25 @@ const Register = () => {
 
       if (error) throw error;
 
+      // Send notification email
+      try {
+        await supabase.functions.invoke('send-notification', {
+          body: {
+            type: 'registration',
+            data: {
+              name: formData.fullName,
+              email: formData.email,
+              phone: formData.phone,
+              course: formData.course,
+              institution: formData.institution,
+              message: formData.message,
+            },
+          },
+        });
+      } catch (emailError) {
+        console.error('Error sending notification:', emailError);
+      }
+
       toast({
         title: "Registration Successful!",
         description: "Thank you for registering. We will contact you soon with further details.",
