@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { supabase } from '@/integrations/supabase/client';
+import { supabase } from '@/integrations/supabase/manualClient';
 import { useRevealOnScroll } from '@/hooks/useRevealOnScroll';
 import { BookOpen, Clock, Users, Award } from 'lucide-react';
 import { Link } from 'react-router-dom';

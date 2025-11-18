@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { supabase } from '@/integrations/supabase/client';
+import { supabase } from '@/integrations/supabase/manualClient';
 import { useToast } from '@/hooks/use-toast';
 
 const AdminRegistrations = () => {
