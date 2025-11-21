@@ -91,7 +91,7 @@ serve(async (req) => {
         },
         body: JSON.stringify({
           from: 'EV Club <onboarding@resend.dev>',
-          to: ['admin@example.com'], // Replace with actual admin email
+          to: ['mahatosumit0913@gmail.com'],
           subject: adminSubject,
           html: adminEmailContent,
         }),
