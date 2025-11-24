@@ -174,22 +174,24 @@ const Events = () => {
             <div className="lg:col-span-3 reveal" style={{ animationDelay: '0.2s' }}>
               <div className="space-y-6">
                 {filteredEvents.length > 0 ? (
-                  filteredEvents.map((event, index) => (
+                  filteredEvents.map((event) => (
                     <div
-                      key={index}
+                      key={event.id}
                       className="card-hover bg-card rounded-xl shadow-lg p-6 border-l-4 border-accent"
                     >
                       <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
                         <div>
-                          <span className="inline-block px-3 py-1 bg-chip text-primary text-sm font-semibold rounded-full mb-2">
-                            {event.type}
-                          </span>
+                          {event.tags && event.tags.length > 0 && (
+                            <span className="inline-block px-3 py-1 bg-chip text-primary text-sm font-semibold rounded-full mb-2">
+                              {event.tags[0]}
+                            </span>
+                          )}
                           <h3 className="text-2xl font-bold text-primary">{event.title}</h3>
                         </div>
                         <div className="flex items-center gap-2 text-saffron">
                           <Calendar size={20} />
                           <span className="font-semibold">
-                            {new Date(event.date).toLocaleDateString('en-US', {
+                            {new Date(event.start_date).toLocaleDateString('en-US', {
                               month: 'short',
                               day: 'numeric',
                               year: 'numeric',
@@ -203,12 +205,23 @@ const Events = () => {
                       <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
                         <div className="flex items-center gap-2">
                           <Clock size={16} className="text-primary" />
-                          <span>{event.time}</span>
+                          <span>
+                            {new Date(event.start_date).toLocaleTimeString('en-US', {
+                              hour: 'numeric',
+                              minute: '2-digit',
+                            })}
+                            {event.end_date && ` - ${new Date(event.end_date).toLocaleTimeString('en-US', {
+                              hour: 'numeric',
+                              minute: '2-digit',
+                            })}`}
+                          </span>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <MapPin size={16} className="text-primary" />
-                          <span>{event.location}</span>
-                        </div>
+                        {event.location && (
+                          <div className="flex items-center gap-2">
+                            <MapPin size={16} className="text-primary" />
+                            <span>{event.location}</span>
+                          </div>
+                        )}
                       </div>
                     </div>
                   ))

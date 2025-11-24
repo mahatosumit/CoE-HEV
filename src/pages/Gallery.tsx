@@ -167,14 +167,14 @@ const Gallery = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredImages.map((img, index) => (
               <div
-                key={index}
+                key={img.id}
                 className="reveal card-hover group relative overflow-hidden rounded-xl shadow-lg bg-card cursor-pointer"
                 style={{ animationDelay: `${index * 0.1}s` }}
                 onClick={() => setLightboxIndex(index)}
               >
                 <div className="aspect-video overflow-hidden">
                   <img
-                    src={img.src}
+                    src={img.image_url}
                     alt={img.title}
                     loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
@@ -183,7 +183,9 @@ const Gallery = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
                     <h3 className="font-bold text-lg mb-1">{img.title}</h3>
-                    <span className="text-sm text-white/80">{img.category}</span>
+                    {img.description && (
+                      <p className="text-sm text-white/80 line-clamp-2">{img.description}</p>
+                    )}
                   </div>
                   <div className="absolute top-4 right-4">
                     <Maximize className="text-white" size={24} />
@@ -236,7 +238,7 @@ const Gallery = () => {
               {isLightboxPlaying ? 'Pause' : 'Play'}
             </button>
             <button
-              onClick={() => downloadImage(filteredImages[lightboxIndex].src, filteredImages[lightboxIndex].title)}
+              onClick={() => downloadImage(filteredImages[lightboxIndex].image_url, filteredImages[lightboxIndex].title)}
               className="p-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors"
               aria-label="Download image"
             >
@@ -246,12 +248,15 @@ const Gallery = () => {
 
           <div className="max-w-6xl max-h-[80vh] animate-fade-in">
             <img
-              src={filteredImages[lightboxIndex].src}
+              src={filteredImages[lightboxIndex].image_url}
               alt={filteredImages[lightboxIndex].title}
               className="max-w-full max-h-[80vh] object-contain"
             />
             <div className="text-center text-white mt-4">
               <h3 className="text-2xl font-bold mb-2">{filteredImages[lightboxIndex].title}</h3>
+              {filteredImages[lightboxIndex].description && (
+                <p className="text-white/90 mb-2">{filteredImages[lightboxIndex].description}</p>
+              )}
               <p className="text-white/70">
                 {lightboxIndex + 1} / {filteredImages.length}
               </p>

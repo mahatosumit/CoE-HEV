@@ -209,54 +209,51 @@ const Courses = () => {
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {courses.map((course, index) => (
                   <div
-                    key={index}
+                    key={course.id}
                     className="reveal card-hover bg-card rounded-2xl shadow-lg overflow-hidden"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
-                    <div className="bg-gradient-to-br from-primary to-secondary p-6">
-                      <div className="flex items-start justify-between mb-4">
-                        <div className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm font-semibold text-white">
-                          {course.level}
-                        </div>
-                        <BookOpen className="text-white" size={24} />
+                    {course.image_url && (
+                      <div className="aspect-video overflow-hidden">
+                        <img
+                          src={course.image_url}
+                          alt={course.title}
+                          className="w-full h-full object-cover"
+                        />
                       </div>
-                      <h3 className="text-2xl font-bold text-white mb-2">{course.title}</h3>
-                    </div>
+                    )}
+                    {!course.image_url && (
+                      <div className="bg-gradient-to-br from-primary to-secondary p-6">
+                        <div className="flex items-start justify-between mb-4">
+                          <BookOpen className="text-white" size={24} />
+                        </div>
+                        <h3 className="text-2xl font-bold text-white mb-2">{course.title}</h3>
+                      </div>
+                    )}
 
                     <div className="p-6">
+                      {course.image_url && (
+                        <h3 className="text-2xl font-bold text-primary mb-4">{course.title}</h3>
+                      )}
                       <p className="text-muted-foreground mb-6">{course.description}</p>
 
-                      <div className="flex items-center gap-6 mb-6 text-sm text-muted-foreground">
-                        <div className="flex items-center gap-2">
-                          <Clock size={16} className="text-primary" />
-                          <span>{course.duration}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Users size={16} className="text-primary" />
-                          <span>{course.students}</span>
-                        </div>
-                      </div>
-
-                      <div className="mb-6">
-                        <h4 className="text-sm font-bold text-primary mb-3">Key Topics:</h4>
-                        <div className="flex flex-wrap gap-2">
-                          {course.topics?.map((topic, i) => (
-                            <span
-                              key={i}
-                              className="px-3 py-1 bg-chip text-primary text-xs rounded-full"
-                            >
-                              {topic}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-
-                      <Link
-                        to="/register"
-                        className="block text-center px-6 py-3 bg-accent hover:bg-success text-white font-semibold rounded-full transition-all duration-300 hover:scale-105"
-                      >
-                        Enroll Now
-                      </Link>
+                      {course.link ? (
+                        <a
+                          href={course.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block text-center px-6 py-3 bg-accent hover:bg-success text-white font-semibold rounded-full transition-all duration-300 hover:scale-105"
+                        >
+                          Learn More
+                        </a>
+                      ) : (
+                        <Link
+                          to="/register"
+                          className="block text-center px-6 py-3 bg-accent hover:bg-success text-white font-semibold rounded-full transition-all duration-300 hover:scale-105"
+                        >
+                          Enroll Now
+                        </Link>
+                      )}
                     </div>
                   </div>
                 ))}
