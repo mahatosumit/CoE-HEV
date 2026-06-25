@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useRevealOnScroll } from '@/hooks/useRevealOnScroll';
 import { MapPin, Phone, Mail, Send, Clock } from 'lucide-react';
+import SEO from '@/components/SEO';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/manualClient';
 
@@ -90,6 +91,28 @@ const Contact = () => {
 
   return (
     <div>
+      <SEO
+        title="Contact KPRIET CoE in Hybrid & Electric Vehicles"
+        description="Get in touch with the KPRIET Centre of Excellence in Hybrid & Electric Vehicles — address, phone, email and enquiry form."
+        path="/contact"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "name": "KPRIET Centre of Excellence in Hybrid & Electric Vehicles",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "KPR Institute of Engineering and Technology, Arasur",
+            "addressLocality": "Coimbatore",
+            "postalCode": "641407",
+            "addressRegion": "Tamil Nadu",
+            "addressCountry": "IN"
+          },
+          "telephone": "+91-42582-26500",
+          "email": "principalkpriet@kpriet.ac.in",
+          "openingHours": "Mo-Fr 09:00-17:00",
+          "url": "https://heritage-to-harmony.lovable.app/contact"
+        }}
+      />
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-900 to-blue-700 text-white py-20">
         <div className="container-custom relative z-10">

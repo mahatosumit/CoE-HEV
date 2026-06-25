@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/manualClient';
 import { useRevealOnScroll } from '@/hooks/useRevealOnScroll';
 import { Search, X, Download, Maximize, ChevronLeft, ChevronRight } from 'lucide-react';
+import SEO from '@/components/SEO';
 
 const Gallery = () => {
   useRevealOnScroll();
@@ -103,6 +104,11 @@ const Gallery = () => {
 
   return (
     <div>
+      <SEO
+        title="Gallery — Photos & Lab Facilities | KPRIET CoE EV"
+        description="Photos from EV workshops, seminars and lab facilities at the KPRIET Centre of Excellence in Hybrid & Electric Vehicles."
+        path="/gallery"
+      />
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-900 to-blue-700 text-white py-20">
         <div className="container-custom relative z-10">

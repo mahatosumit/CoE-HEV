@@ -1,0 +1,13 @@
+# KPRIET Centre of Excellence in Hybrid & Electric Vehicles
+
+> EV training, certification, research and industry workshops at KPR Institute of Engineering and Technology, Coimbatore.
+
+## Pages
+
+- [Home](/): Overview of the Centre of Excellence in Hybrid & Electric Vehicles.
+- [About](/about): Mission, vision, and faculty of the CoE.
+- [Courses](/courses): EV training and certification programs.
+- [Events](/events): Upcoming workshops, seminars, and industry events.
+- [Gallery](/gallery): Photos from past events and lab facilities.
+- [Contact](/contact): Address, phone, and email of the centre.
+- [Register](/register): Enrol in upcoming EV programs.

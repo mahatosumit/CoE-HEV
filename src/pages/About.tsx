@@ -1,11 +1,17 @@
 import { useRevealOnScroll } from '@/hooks/useRevealOnScroll';
 import { Target, Eye, Award, Users } from 'lucide-react';
+import SEO from '@/components/SEO';
 
 const About = () => {
   useRevealOnScroll();
 
   return (
     <div>
+      <SEO
+        title="About the CoE in Hybrid & Electric Vehicles | KPRIET"
+        description="Learn about the mission, vision, faculty and facilities of the KPRIET Centre of Excellence in Hybrid & Electric Vehicles."
+        path="/about"
+      />
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-900 to-blue-700 text-white py-20">
         <div className="container-custom relative z-10">
