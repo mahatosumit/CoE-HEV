@@ -41,6 +41,29 @@ const Courses = () => {
 
   return (
     <div>
+      <SEO
+        title="EV Courses & Certification Programs | KPRIET CoE"
+        description="Hybrid & electric vehicle training and certification programs — battery tech, EV powertrains, charging systems and more at KPRIET."
+        path="/courses"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "itemListElement": courses.map((c: any, i: number) => ({
+            "@type": "ListItem",
+            "position": i + 1,
+            "item": {
+              "@type": "Course",
+              "name": c.title,
+              "description": c.description,
+              "provider": {
+                "@type": "Organization",
+                "name": "KPRIET Centre of Excellence in Hybrid & Electric Vehicles",
+                "sameAs": "https://heritage-to-harmony.lovable.app/"
+              }
+            }
+          }))
+        }}
+      />
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-900 to-blue-700 text-white py-20">
         <div className="container-custom relative z-10">

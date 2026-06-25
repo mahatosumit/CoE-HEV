@@ -80,6 +80,29 @@ const Events = () => {
 
   return (
     <div>
+      <SEO
+        title="EV Events, Workshops & Seminars | KPRIET CoE"
+        description="Upcoming workshops, seminars and industry events on hybrid & electric vehicles at KPRIET Centre of Excellence."
+        path="/events"
+        jsonLd={events.map((e: any) => ({
+          "@context": "https://schema.org",
+          "@type": "Event",
+          "name": e.title,
+          "startDate": e.start_date,
+          "endDate": e.end_date || e.start_date,
+          "location": {
+            "@type": "Place",
+            "name": e.location || "KPRIET, Coimbatore",
+            "address": "KPRIET, Arasur, Coimbatore, Tamil Nadu, India"
+          },
+          "description": e.description,
+          "organizer": {
+            "@type": "Organization",
+            "name": "KPRIET CoE in Hybrid & Electric Vehicles",
+            "url": "https://heritage-to-harmony.lovable.app/"
+          }
+        }))}
+      />
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-900 to-blue-700 text-white py-20">
         <div className="container-custom relative z-10">

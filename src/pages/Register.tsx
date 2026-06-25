@@ -105,6 +105,11 @@ const Register = () => {
 
   return (
     <div>
+      <SEO
+        title="Register for EV Programs | KPRIET CoE"
+        description="Enrol in EV training and certification programs at the KPRIET Centre of Excellence in Hybrid & Electric Vehicles."
+        path="/register"
+      />
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-900 to-blue-700 text-white py-20">
         <div className="container-custom relative z-10">

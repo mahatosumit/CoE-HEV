@@ -43,6 +43,11 @@ const Home = () => {
 
   return (
     <div>
+      <SEO
+        title="Centre of Excellence in Hybrid & Electric Vehicles | KPRIET"
+        description="KPRIET Centre of Excellence in Hybrid & Electric Vehicles — EV training, certification, research and industry workshops in Coimbatore."
+        path="/"
+      />
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-900 via-blue-700 to-blue-600 text-white py-20 md:py-32 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
