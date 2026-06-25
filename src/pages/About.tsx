@@ -36,7 +36,7 @@ const About = () => {
               <div className="w-16 h-16 bg-chip rounded-xl flex items-center justify-center mb-6">
                 <Target className="text-primary" size={32} />
               </div>
-              <h3 className="text-2xl font-bold text-primary mb-4">Our Mission</h3>
+              <h2 className="text-2xl font-bold text-primary mb-4">Our Mission</h2>
               <p className="text-foreground leading-relaxed">
                 To provide world-class education and training in hybrid and electric vehicle 
                 technologies, fostering innovation and preparing students to lead the 
@@ -49,7 +49,7 @@ const About = () => {
               <div className="w-16 h-16 bg-chip rounded-xl flex items-center justify-center mb-6">
                 <Eye className="text-primary" size={32} />
               </div>
-              <h3 className="text-2xl font-bold text-primary mb-4">Our Vision</h3>
+              <h2 className="text-2xl font-bold text-primary mb-4">Our Vision</h2>
               <p className="text-foreground leading-relaxed">
                 To become a nationally recognized Centre of Excellence in electric vehicle 
                 technology, producing skilled professionals who will drive innovation in 

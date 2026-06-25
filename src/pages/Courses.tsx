@@ -268,7 +268,7 @@ const Courses = () => {
                           rel="noopener noreferrer"
                           className="block text-center px-6 py-3 bg-accent hover:bg-success text-white font-semibold rounded-full transition-all duration-300 hover:scale-105"
                         >
-                          Learn More
+                          View Course Details
                         </a>
                       ) : (
                         <Link
