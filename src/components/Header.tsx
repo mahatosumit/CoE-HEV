@@ -74,9 +74,9 @@ const Header = () => {
                 }}
               />
               <div>
-                <h1 className="text-lg md:text-2xl font-bold leading-tight">
+                <span className="block text-lg md:text-2xl font-bold leading-tight">
                   Centre of Excellence
-                </h1>
+                </span>
                 <p className="text-xs md:text-sm opacity-90">
                   Hybrid & Electric Vehicles
                 </p>
