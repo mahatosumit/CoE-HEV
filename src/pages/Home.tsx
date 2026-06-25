@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useRevealOnScroll } from '@/hooks/useRevealOnScroll';
 import { Zap, Users, Award, TrendingUp } from 'lucide-react';
+import SEO from '@/components/SEO';
 
 const Home = () => {
   useRevealOnScroll();

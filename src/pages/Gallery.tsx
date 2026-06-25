@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/manualClient';
 import { useRevealOnScroll } from '@/hooks/useRevealOnScroll';
 import { Search, X, Download, Maximize, ChevronLeft, ChevronRight } from 'lucide-react';
+import SEO from '@/components/SEO';
 
 const Gallery = () => {
   useRevealOnScroll();

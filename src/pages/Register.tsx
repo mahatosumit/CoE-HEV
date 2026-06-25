@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useRevealOnScroll } from '@/hooks/useRevealOnScroll';
 import { UserPlus } from 'lucide-react';
+import SEO from '@/components/SEO';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/manualClient';
 

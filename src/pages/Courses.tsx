@@ -3,6 +3,7 @@ import { supabase } from '@/integrations/supabase/manualClient';
 import { useRevealOnScroll } from '@/hooks/useRevealOnScroll';
 import { BookOpen, Clock, Users, Award, Shield, Wrench, Battery } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SEO from '@/components/SEO';
 
 const Courses = () => {
   useRevealOnScroll();

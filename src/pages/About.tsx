@@ -1,5 +1,6 @@
 import { useRevealOnScroll } from '@/hooks/useRevealOnScroll';
 import { Target, Eye, Award, Users } from 'lucide-react';
+import SEO from '@/components/SEO';
 
 const About = () => {
   useRevealOnScroll();
